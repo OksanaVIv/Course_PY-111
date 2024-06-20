@@ -3,14 +3,14 @@ files:
   - name: task.py
     visible: true
     placeholders:
-      - offset: 520
-        length: 53
+      - offset: 536
+        length: 42
         placeholder_text: "...  # TODO реализовать алгоритм сортировки пузырьком"
         initial_state:
           length: 53
           offset: 520
         initialized_from_dependency: false
-        selected: false
+        selected: true
         status: Unchecked
         encrypted_possible_answer: '...'
     text: |

@@ -9,7 +9,7 @@ def partition(arr, low=0, high=None):
     pivot = arr[high]
 
     i = low - 1
-    for j in range (low, high):
+    for j in range(low, high):
         if arr[j] <= pivot:
             i += 1
             arr[i], arr[j] = arr[j], arr[i]
@@ -41,6 +41,6 @@ def sort(container: List[int]) -> List[int]:
 if __name__ == "__main__":
     arr = [5,3,7,9,2,3,0]
     print(partition(arr))
-    print(arr)
-    sort(arr)
-    print(arr)
+    # print(arr)
+    # sort(arr)
+    # print(arr)
