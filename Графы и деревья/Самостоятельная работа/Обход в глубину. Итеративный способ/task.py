@@ -14,4 +14,35 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     :param start_node: Стартовый узел, откуда нужно начать обход
     :return: Список узлов в порядке посещения.
     """
-    ...  # TODO реализовать обход в глубину итеративным способом
+
+    visited = {node: False for node in g.nodes}
+    d = deque()
+    path = []
+
+    d.append(start_node)
+    visited[start_node] = True
+
+    while d:
+        current_node = d.pop()
+        path.append(current_node)
+
+        for neighbor in g.neighbors(current_node):
+            if not visited[neighbor]:
+                d.append(neighbor)
+                visited[neighbor] = True
+    return path
+
+if __name__ == '__main__':
+    graph = nx.Graph()  # не направленный не мультиграф
+    # graph.add_nodes_from('ABCDEFGHIJ')
+    graph.add_edges_from([
+        ('A', 'B'),
+        ('A', 'C'),
+        ('C', 'F'),
+        ('B', 'E'),
+        ('B', 'D'),
+        ('E', 'G'),
+    ])
+    # nx.draw_networkx(graph)
+    # plt.show()
+    print(dfs(graph, 'A'))

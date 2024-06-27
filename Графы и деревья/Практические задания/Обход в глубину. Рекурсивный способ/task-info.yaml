@@ -3,15 +3,15 @@ files:
   - name: task.py
     visible: true
     placeholders:
-      - offset: 531
-        length: 39
+      - offset: 559
+        length: 0
         placeholder_text: "...  # TODO реализовать обход в глубину"
         initial_state:
           length: 39
           offset: 531
         initialized_from_dependency: false
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
         encrypted_possible_answer: |-
           visited = {node: False for node in g.nodes}
               path = []
@@ -92,5 +92,8 @@ files:
   - name: img.png
     visible: true
     learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 27 Jun 2024 17:09:19 UTC"
 record: -1
