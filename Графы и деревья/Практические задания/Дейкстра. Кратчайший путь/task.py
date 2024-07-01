@@ -17,7 +17,7 @@ def dijkstra_algo(g: nx.DiGraph, starting_node: Hashable) -> Mapping[Hashable, U
     distances[starting_node] = 0
     predecessor = {node: None for node in g.nodes}
 
-    queue = [(0,starting_node)]
+    queue = [(0, starting_node)]
 
     while queue:
         current_distance, current_node = heapq.heappop(queue)
@@ -34,11 +34,28 @@ def dijkstra_algo(g: nx.DiGraph, starting_node: Hashable) -> Mapping[Hashable, U
 
     return distances, predecessor
 
+
+_, coasts = nx.dijkstra_predecessor_and_distance(g, starting_node)
+    for node in g.nodes:
+        if node not in coasts:
+            coasts[node] = float("inf")
+
+    return coasts
+
+
 if __name__ == '__main__':
-
-    graph = nx.DiGraph
+    graph = nx.DiGraph()
     graph.add_weighted_edges_from([
-
+        ('A', 'B', 1.0),
+        ('B', 'C', 3.0),
+        ('B', 'D', 2.0),
+        ('B', 'E', 8.0),
+        ('C', 'D', 1.),
+        ('C', 'E', 4.0),
+        ('D', 'A', 2.0),
+        ('D', 'E', 2.0),
+        ('E', 'F', 3.0),
+        ('G', 'D', 1.0),
     ])
 
     print(dijkstra_algo(graph, 1))  # {1: 0, 2: 7, 3: 9, 6: 11, 4: 20, 5: 26}

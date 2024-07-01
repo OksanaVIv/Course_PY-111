@@ -12,7 +12,8 @@ class PriorityQueue:
     LOW_PRIORITY = 10  # наименьший приоритет
 
     def __init__(self):
-        ...  # TODO использовать deque для реализации очереди с приоритетами
+        self.pr_queue:  dict[int, deque] = {
+            priority: deque() for priority in range(self.HIGH_PRIORITY, self.LOW_PRIORITY + 1)} # TODO использовать deque для реализации очереди с приоритетами::
 
     def enqueue(self, elem: Any, priority: int = 0) -> None:
         """
@@ -21,7 +22,7 @@ class PriorityQueue:
         :param elem: Элемент, который должен быть добавлен
         :param priority: Приоритет добавляемого элемента
         """
-        ...  # TODO реализовать метод enqueue
+        self.pr_queue[priority].append(elem)  # TODO реализовать метод enqueue
 
     def dequeue(self) -> Any:
         """
@@ -30,8 +31,12 @@ class PriorityQueue:
         :raise: IndexError - Ошибка, если очередь пуста
 
         :return: Извлеченный с начала очереди элемент.
-        """
-        ...  # TODO реализовать метод dequeue
+        # """
+        for value in self.pr_queue.values():
+            if value:
+                return value.popleft()
+
+        raise IndexError("Очередь пуста")
 
     def peek(self, ind: int = 0, priority: int = 0) -> Any:
         """
@@ -45,12 +50,32 @@ class PriorityQueue:
 
         :return: Значение просмотренного элемента
         """
-        ...  # TODO реализовать метод peek
+        if not isinstance(ind, int):
+            raise TypeError("Введите целое число")
+        elif ind < 0 or ind > len(self.pr_queue):
+            raise IndexError("Индекс вне границ стека")
+        return self.pr_queue[priority][ind]
+
+    # TODO реализовать метод peek
 
     def clear(self) -> None:
         """ Очистка очереди. """
-        ...  # TODO реализовать метод clear
+        for val in self.pr_queue.values():
+             val.clear()
+
+        # for queue in self.pr_queue.values():
+        #     queue.clear()
+
+
+
+        # TODO реализовать метод clear
 
     def __len__(self):
         """ Количество элементов в очереди. """
-        ...  # TODO реализовать метод __len__
+        # return len(self.pr_queue) # TODO реализовать метод __len__
+
+        len_ = 0
+        for val in self.pr_queue.values():
+            len_ += len(val)
+
+        return len_

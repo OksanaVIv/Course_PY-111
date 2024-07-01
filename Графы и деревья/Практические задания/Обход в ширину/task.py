@@ -53,6 +53,6 @@ if __name__ == '__main__':
         ('C', 'H'),
         ('H', 'I'),
     ])
-    # nx.draw_networkx(graph)
-    # plt.show()
+    nx.draw_networkx(graph)
+    plt.show()
     print(bfs(graph, 'H'))
